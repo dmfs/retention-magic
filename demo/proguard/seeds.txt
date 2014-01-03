@@ -1,0 +1,117 @@
+android.support.v4.app.BackStackState
+android.support.v4.app.BackStackState: android.os.Parcelable$Creator CREATOR
+android.support.v4.app.Fragment$SavedState
+android.support.v4.app.Fragment$SavedState: android.os.Parcelable$Creator CREATOR
+android.support.v4.app.FragmentActivity
+android.support.v4.app.FragmentActivity: java.lang.String TAG
+android.support.v4.app.FragmentActivity: FragmentActivity()
+android.support.v4.app.FragmentManagerState
+android.support.v4.app.FragmentManagerState: android.os.Parcelable$Creator CREATOR
+android.support.v4.app.FragmentState
+android.support.v4.app.FragmentState: android.os.Parcelable$Creator CREATOR
+android.support.v4.app.FragmentTabHost
+android.support.v4.app.FragmentTabHost: FragmentTabHost(android.content.Context,android.util.AttributeSet)
+android.support.v4.app.FragmentTabHost$SavedState
+android.support.v4.app.FragmentTabHost$SavedState: android.os.Parcelable$Creator CREATOR
+android.support.v4.content.FileProvider
+android.support.v4.content.ModernAsyncTask$Status: android.support.v4.content.ModernAsyncTask$Status[] values()
+android.support.v4.content.ModernAsyncTask$Status: android.support.v4.content.ModernAsyncTask$Status valueOf(java.lang.String)
+android.support.v4.content.WakefulBroadcastReceiver
+android.support.v4.view.PagerTabStrip
+android.support.v4.view.PagerTabStrip: PagerTabStrip(android.content.Context)
+android.support.v4.view.PagerTabStrip: PagerTabStrip(android.content.Context,android.util.AttributeSet)
+android.support.v4.view.PagerTitleStrip
+android.support.v4.view.PagerTitleStrip: PagerTitleStrip(android.content.Context)
+android.support.v4.view.PagerTitleStrip: PagerTitleStrip(android.content.Context,android.util.AttributeSet)
+android.support.v4.view.ViewPager
+android.support.v4.view.ViewPager: ViewPager(android.content.Context)
+android.support.v4.view.ViewPager: ViewPager(android.content.Context,android.util.AttributeSet)
+android.support.v4.view.ViewPager$LayoutParams
+android.support.v4.view.ViewPager$LayoutParams: ViewPager$LayoutParams(android.content.Context,android.util.AttributeSet)
+android.support.v4.view.ViewPager$SavedState
+android.support.v4.view.ViewPager$SavedState: android.os.Parcelable$Creator CREATOR
+android.support.v4.widget.ContentLoadingProgressBar
+android.support.v4.widget.ContentLoadingProgressBar: ContentLoadingProgressBar(android.content.Context,android.util.AttributeSet)
+android.support.v4.widget.DrawerLayout
+android.support.v4.widget.DrawerLayout: DrawerLayout(android.content.Context,android.util.AttributeSet)
+android.support.v4.widget.DrawerLayout: DrawerLayout(android.content.Context,android.util.AttributeSet,int)
+android.support.v4.widget.DrawerLayout$LayoutParams
+android.support.v4.widget.DrawerLayout$LayoutParams: DrawerLayout$LayoutParams(android.content.Context,android.util.AttributeSet)
+android.support.v4.widget.DrawerLayout$SavedState
+android.support.v4.widget.DrawerLayout$SavedState: android.os.Parcelable$Creator CREATOR
+android.support.v4.widget.SlidingPaneLayout
+android.support.v4.widget.SlidingPaneLayout: SlidingPaneLayout(android.content.Context,android.util.AttributeSet)
+android.support.v4.widget.SlidingPaneLayout: SlidingPaneLayout(android.content.Context,android.util.AttributeSet,int)
+android.support.v4.widget.SlidingPaneLayout$LayoutParams
+android.support.v4.widget.SlidingPaneLayout$LayoutParams: SlidingPaneLayout$LayoutParams(android.content.Context,android.util.AttributeSet)
+android.support.v4.widget.SlidingPaneLayout$SavedState
+android.support.v4.widget.SlidingPaneLayout$SavedState: android.os.Parcelable$Creator CREATOR
+org.dmfs.android.retentionmagic.Activity
+org.dmfs.android.retentionmagic.FragmentActivity
+org.dmfs.android.retentionmagic.FragmentActivity: FragmentActivity()
+org.dmfs.android.retentionmagic.demo.DemoActivity
+org.dmfs.android.retentionmagic.demo.DemoActivity: java.lang.String TAG
+org.dmfs.android.retentionmagic.demo.DemoActivity: boolean _boolean
+org.dmfs.android.retentionmagic.demo.DemoActivity: boolean[] _booleanArray
+org.dmfs.android.retentionmagic.demo.DemoActivity: byte _byte
+org.dmfs.android.retentionmagic.demo.DemoActivity: byte[] _byteArray
+org.dmfs.android.retentionmagic.demo.DemoActivity: short _short
+org.dmfs.android.retentionmagic.demo.DemoActivity: short[] _shortArray
+org.dmfs.android.retentionmagic.demo.DemoActivity: char _char
+org.dmfs.android.retentionmagic.demo.DemoActivity: char[] _charArray
+org.dmfs.android.retentionmagic.demo.DemoActivity: int _int
+org.dmfs.android.retentionmagic.demo.DemoActivity: int[] _intArray
+org.dmfs.android.retentionmagic.demo.DemoActivity: float _float
+org.dmfs.android.retentionmagic.demo.DemoActivity: float[] _floatArray
+org.dmfs.android.retentionmagic.demo.DemoActivity: double _double
+org.dmfs.android.retentionmagic.demo.DemoActivity: double[] _doubleArray
+org.dmfs.android.retentionmagic.demo.DemoActivity: long _long
+org.dmfs.android.retentionmagic.demo.DemoActivity: long[] _longArray
+org.dmfs.android.retentionmagic.demo.DemoActivity: java.lang.String _string
+org.dmfs.android.retentionmagic.demo.DemoActivity: java.lang.String[] _stringArray
+org.dmfs.android.retentionmagic.demo.DemoActivity: android.os.Bundle _bundle
+org.dmfs.android.retentionmagic.demo.DemoActivity: java.lang.CharSequence _charSequence
+org.dmfs.android.retentionmagic.demo.DemoActivity: java.lang.CharSequence[] _charSequenceArray
+org.dmfs.android.retentionmagic.demo.DemoActivity: android.os.Parcelable _parcelable
+org.dmfs.android.retentionmagic.demo.DemoActivity: android.os.Parcelable[] _parcelableSequenceArray
+org.dmfs.android.retentionmagic.demo.DemoActivity: java.io.Serializable _serializeable
+org.dmfs.android.retentionmagic.demo.DemoActivity: android.util.SparseArray _sparseArrayParcelable
+org.dmfs.android.retentionmagic.demo.DemoActivity: java.util.ArrayList _integerArrayList
+org.dmfs.android.retentionmagic.demo.DemoActivity: java.util.ArrayList _stringArrayList
+org.dmfs.android.retentionmagic.demo.DemoActivity: java.util.ArrayList _parcelableArrayList
+org.dmfs.android.retentionmagic.demo.DemoActivity: java.lang.String textValue
+org.dmfs.android.retentionmagic.demo.DemoActivity: boolean firstStart
+org.dmfs.android.retentionmagic.demo.DemoActivity: int mInstance
+org.dmfs.android.retentionmagic.demo.DemoActivity: int mSelectedSection
+org.dmfs.android.retentionmagic.demo.DemoActivity: DemoActivity()
+org.dmfs.android.retentionmagic.demo.DemoActivity$DummySectionFragment: java.lang.String TAG
+org.dmfs.android.retentionmagic.demo.DemoActivity$DummySectionFragment: boolean _boolean
+org.dmfs.android.retentionmagic.demo.DemoActivity$DummySectionFragment: boolean[] _booleanArray
+org.dmfs.android.retentionmagic.demo.DemoActivity$DummySectionFragment: byte _byte
+org.dmfs.android.retentionmagic.demo.DemoActivity$DummySectionFragment: byte[] _byteArray
+org.dmfs.android.retentionmagic.demo.DemoActivity$DummySectionFragment: short _short
+org.dmfs.android.retentionmagic.demo.DemoActivity$DummySectionFragment: short[] _shortArray
+org.dmfs.android.retentionmagic.demo.DemoActivity$DummySectionFragment: char _char
+org.dmfs.android.retentionmagic.demo.DemoActivity$DummySectionFragment: char[] _charArray
+org.dmfs.android.retentionmagic.demo.DemoActivity$DummySectionFragment: int _int
+org.dmfs.android.retentionmagic.demo.DemoActivity$DummySectionFragment: int[] _intArray
+org.dmfs.android.retentionmagic.demo.DemoActivity$DummySectionFragment: float _float
+org.dmfs.android.retentionmagic.demo.DemoActivity$DummySectionFragment: float[] _floatArray
+org.dmfs.android.retentionmagic.demo.DemoActivity$DummySectionFragment: double _double
+org.dmfs.android.retentionmagic.demo.DemoActivity$DummySectionFragment: double[] _doubleArray
+org.dmfs.android.retentionmagic.demo.DemoActivity$DummySectionFragment: long _long
+org.dmfs.android.retentionmagic.demo.DemoActivity$DummySectionFragment: long[] _longArray
+org.dmfs.android.retentionmagic.demo.DemoActivity$DummySectionFragment: java.lang.String _string
+org.dmfs.android.retentionmagic.demo.DemoActivity$DummySectionFragment: java.lang.String[] _stringArray
+org.dmfs.android.retentionmagic.demo.DemoActivity$DummySectionFragment: android.os.Bundle _bundle
+org.dmfs.android.retentionmagic.demo.DemoActivity$DummySectionFragment: java.lang.CharSequence _charSequence
+org.dmfs.android.retentionmagic.demo.DemoActivity$DummySectionFragment: java.lang.CharSequence[] _charSequenceArray
+org.dmfs.android.retentionmagic.demo.DemoActivity$DummySectionFragment: android.os.Parcelable _parcelable
+org.dmfs.android.retentionmagic.demo.DemoActivity$DummySectionFragment: android.os.Parcelable[] _parcelableSequenceArray
+org.dmfs.android.retentionmagic.demo.DemoActivity$DummySectionFragment: java.io.Serializable _serializeable
+org.dmfs.android.retentionmagic.demo.DemoActivity$DummySectionFragment: android.util.SparseArray _sparseArrayParcelable
+org.dmfs.android.retentionmagic.demo.DemoActivity$DummySectionFragment: java.util.ArrayList _integerArrayList
+org.dmfs.android.retentionmagic.demo.DemoActivity$DummySectionFragment: java.util.ArrayList _stringArrayList
+org.dmfs.android.retentionmagic.demo.DemoActivity$DummySectionFragment: java.util.ArrayList _parcelableArrayList
+org.dmfs.android.retentionmagic.demo.DemoActivity$DummySectionFragment: java.lang.String text
+org.dmfs.android.retentionmagic.demo.DemoActivity$DummySectionFragment: java.lang.String instanceTag
