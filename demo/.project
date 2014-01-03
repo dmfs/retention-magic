@@ -32,9 +32,9 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>android-instance-state-helper</name>
+			<name>retention-magic</name>
 			<type>2</type>
-			<location>/home/marten/workspace/libraries/android-instance-state-helper/src</location>
+			<location>$%7BPARENT-1-PROJECT_LOC%7D/src</location>
 		</link>
 	</linkedResources>
 </projectDescription>
