@@ -22,15 +22,14 @@ import android.content.SharedPreferences;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 
 
 /**
- * A {@link android.support.v4.app.DialogFragment} that can retain field values.
+ * A {@link android.app.DialogFragment} that can retain field values.
  * 
  * @author Marten Gajda <marten@dmfs.org>
  */
-public class SupportDialogFragment extends android.support.v4.app.DialogFragment
+public class ListFragment extends android.app.ListFragment
 {
 	private SharedPreferences mPrefs;
 
@@ -48,7 +47,7 @@ public class SupportDialogFragment extends android.support.v4.app.DialogFragment
 	{
 		super.onCreate(savedInstanceState);
 
-		FragmentActivity activity = getActivity();
+		Activity activity = getActivity();
 		mPrefs = activity.getSharedPreferences(activity.getPackageName() + ".sharedPrefences", 0);
 
 		if (savedInstanceState == null)

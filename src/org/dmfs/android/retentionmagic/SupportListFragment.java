@@ -30,7 +30,7 @@ import android.support.v4.app.FragmentActivity;
  * 
  * @author Marten Gajda <marten@dmfs.org>
  */
-public class SupportDialogFragment extends android.support.v4.app.DialogFragment
+public class SupportListFragment extends android.support.v4.app.ListFragment
 {
 	private SharedPreferences mPrefs;
 
