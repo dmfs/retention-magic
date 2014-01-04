@@ -909,7 +909,6 @@ public final class RetentionMagic
 			helperCache = new HashMap<Field, PersistenceHelper>();
 			for (Field field : classInstance.getDeclaredFields())
 			{
-				System.out.println("" + field.getName());
 				Retain retain = field.getAnnotation(Retain.class);
 				if (retain != null && !ArrayList.class.isAssignableFrom(field.getType()))
 				{
@@ -920,7 +919,6 @@ public final class RetentionMagic
 					{
 						key = field.getName();
 					}
-					System.out.println("" + field.getName() + " key " + key);
 
 					PersistenceHelper helper = getHelper(field.getType());
 					if (helper != null)
