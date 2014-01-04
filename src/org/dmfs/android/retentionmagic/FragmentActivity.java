@@ -40,6 +40,8 @@ public class FragmentActivity extends android.support.v4.app.FragmentActivity
 
 		mPrefs = getSharedPreferences(getPackageName() + ".sharedPrefences", 0);
 
+		RetentionMagic.init(this, getIntent().getExtras());
+
 		if (savedInstanceState == null)
 		{
 			RetentionMagic.init(this, mPrefs);

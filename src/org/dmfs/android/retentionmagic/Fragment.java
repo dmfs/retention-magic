@@ -33,6 +33,13 @@ public class Fragment extends android.app.Fragment
 {
 	private SharedPreferences mPrefs;
 
+	@Override
+	public void onAttach(Activity activity)
+	{
+		super.onAttach(activity);
+		RetentionMagic.init(this, getArguments());
+	}
+
 
 	@Override
 	public void onCreate(Bundle savedInstanceState)

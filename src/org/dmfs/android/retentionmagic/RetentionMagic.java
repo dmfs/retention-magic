@@ -24,6 +24,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.dmfs.android.retentionmagic.annotations.Parameter;
+import org.dmfs.android.retentionmagic.annotations.ParameterArrayList;
 import org.dmfs.android.retentionmagic.annotations.Retain;
 import org.dmfs.android.retentionmagic.annotations.RetainArrayList;
 
@@ -1057,6 +1059,45 @@ public final class RetentionMagic
 	}
 
 
+	public static void init(final Activity activity, final Bundle extras)
+	{
+		try
+		{
+			init(activity.getClass(), activity, extras);
+		}
+		catch (IllegalAccessException e)
+		{
+			e.printStackTrace();
+		}
+	}
+
+
+	public static void init(final Fragment fragment, final Bundle arguments)
+	{
+		try
+		{
+			init(fragment.getClass(), fragment, arguments);
+		}
+		catch (IllegalAccessException e)
+		{
+			e.printStackTrace();
+		}
+	}
+
+
+	public static void init(final android.support.v4.app.Fragment fragment, final Bundle arguments)
+	{
+		try
+		{
+			init(fragment.getClass(), fragment, arguments);
+		}
+		catch (IllegalAccessException e)
+		{
+			e.printStackTrace();
+		}
+	}
+
+
 	public static void persist(final Activity activity, final SharedPreferences prefs)
 	{
 		SharedPreferences.Editor editor = prefs.edit();
@@ -1156,7 +1197,6 @@ public final class RetentionMagic
 
 		if (helperCache == null)
 		{
-			helperCache = new HashMap<Field, PersistenceHelper>();
 			for (Field field : classInstance.getDeclaredFields())
 			{
 				Retain retain = field.getAnnotation(Retain.class);
@@ -1177,7 +1217,6 @@ public final class RetentionMagic
 					if (helper != null)
 					{
 						helper.restoreFromPreferences(field, instance, key, prefs);
-						helperCache.put(field, helper);
 					}
 					else
 					{
@@ -1223,7 +1262,6 @@ public final class RetentionMagic
 
 		if (helperCache == null)
 		{
-			helperCache = new HashMap<Field, PersistenceHelper>();
 			for (Field field : classInstance.getDeclaredFields())
 			{
 				Retain retain = field.getAnnotation(Retain.class);
@@ -1244,7 +1282,6 @@ public final class RetentionMagic
 					if (helper != null)
 					{
 						helper.storeInPreferences(field, instance, key, editor);
-						helperCache.put(field, helper);
 					}
 					else
 					{
@@ -1280,6 +1317,73 @@ public final class RetentionMagic
 					helper.storeInPreferences(field, instance, key, editor);
 				}
 			}
+		}
+	}
+
+
+	private static void init(final Class<?> classInstance, final Object instance, final Bundle bundle) throws IllegalAccessException
+	{
+		if (bundle == null || bundle.size() == 0)
+		{
+			return;
+		}
+
+		for (Field field : classInstance.getDeclaredFields())
+		{
+			Parameter param = field.getAnnotation(Parameter.class);
+			if (param != null && !ArrayList.class.isAssignableFrom(field.getType()))
+			{
+				field.setAccessible(true);
+
+				String key = param.key();
+				if (key == null || key.length() == 0)
+				{
+					key = field.getName();
+				}
+
+				PersistenceHelper helper = getHelper(field.getType());
+				if (helper != null)
+				{
+					helper.restoreFromBundle(field, instance, key, bundle);
+				}
+				else
+				{
+					throw new UnsupportedOperationException("field of class " + field.getType().getCanonicalName()
+						+ " not supported for initialization from a Bundle");
+				}
+			}
+			else if (param != null)
+			{
+				throw new UnsupportedOperationException("@Parameter does not support ArrayLists, use @ParameterArrayList instead");
+			}
+			else
+			{
+				ParameterArrayList paramList = field.getAnnotation(ParameterArrayList.class);
+				if (paramList != null && ArrayList.class.isAssignableFrom(field.getType()))
+				{
+					field.setAccessible(true);
+					String key = paramList.value();
+					if (key == null || key.length() == 0)
+					{
+						key = field.getName();
+					}
+
+					PersistenceHelper helper = getArrayListHelper(paramList.genericType());
+					if (helper != null)
+					{
+						helper.restoreFromBundle(field, instance, key, bundle);
+					}
+					else
+					{
+						throw new UnsupportedOperationException("list with generic type of " + field.getType().getCanonicalName() + " not supported");
+					}
+				}
+				else if (paramList != null)
+				{
+					throw new UnsupportedOperationException("@ParameterArrayList supports only ArrayList fields, use @Parameter instead");
+				}
+			}
+
 		}
 	}
 

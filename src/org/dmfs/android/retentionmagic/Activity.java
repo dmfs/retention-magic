@@ -40,6 +40,8 @@ public class Activity extends android.app.Activity
 
 		mPrefs = getSharedPreferences(getPackageName() + ".sharedPrefences", 0);
 
+		RetentionMagic.init(this, getIntent().getExtras());
+
 		if (savedInstanceState == null)
 		{
 			RetentionMagic.init(this, mPrefs);

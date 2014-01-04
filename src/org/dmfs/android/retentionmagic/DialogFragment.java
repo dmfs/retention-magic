@@ -35,6 +35,14 @@ public class DialogFragment extends android.app.DialogFragment
 
 
 	@Override
+	public void onAttach(Activity activity)
+	{
+		super.onAttach(activity);
+		RetentionMagic.init(this, getArguments());
+	}
+
+
+	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);

@@ -26,6 +26,7 @@ import java.util.Arrays;
 import java.util.Locale;
 
 import org.dmfs.android.retentionmagic.FragmentActivity;
+import org.dmfs.android.retentionmagic.annotations.Parameter;
 import org.dmfs.android.retentionmagic.annotations.Retain;
 import org.dmfs.android.retentionmagic.annotations.RetainArrayList;
 
@@ -142,8 +143,8 @@ public class DemoActivity extends FragmentActivity implements OnPageChangeListen
 	@RetainArrayList(genericType = String.class)
 	public ArrayList<String> _stringArrayList;
 
-//	@RetainArrayList(genericType = CharSequence.class)
-//	public ArrayList<CharSequence> _charSequenceArrayList;
+	// @RetainArrayList(genericType = CharSequence.class)
+	// public ArrayList<CharSequence> _charSequenceArrayList;
 
 	@RetainArrayList(genericType = Parcelable.class)
 	public ArrayList<Parcelable> _parcelableArrayList;
@@ -201,10 +202,9 @@ public class DemoActivity extends FragmentActivity implements OnPageChangeListen
 			_stringArrayList.add("30");
 			_stringArrayList.add("31");
 
-	/*		_charSequenceArrayList = new ArrayList<CharSequence>();
-			_charSequenceArrayList.add("32");
-			_charSequenceArrayList.add("33");
-			*/
+			/*
+			 * _charSequenceArrayList = new ArrayList<CharSequence>(); _charSequenceArrayList.add("32"); _charSequenceArrayList.add("33");
+			 */
 		}
 		else
 		{
@@ -242,11 +242,10 @@ public class DemoActivity extends FragmentActivity implements OnPageChangeListen
 			stringArrayList.add("31");
 			assertEquals(stringArrayList, _stringArrayList);
 
-		/*	ArrayList<CharSequence> charSequenceArrayList = new ArrayList<CharSequence>();
-			charSequenceArrayList.add("32");
-			charSequenceArrayList.add("33");
-			assertEquals(charSequenceArrayList, _charSequenceArrayList);
-			*/
+			/*
+			 * ArrayList<CharSequence> charSequenceArrayList = new ArrayList<CharSequence>(); charSequenceArrayList.add("32"); charSequenceArrayList.add("33");
+			 * assertEquals(charSequenceArrayList, _charSequenceArrayList);
+			 */
 		}
 
 		setContentView(R.layout.activity_demo);
@@ -308,7 +307,7 @@ public class DemoActivity extends FragmentActivity implements OnPageChangeListen
 		{
 			Fragment fragment = new DummySectionFragment();
 			Bundle args = new Bundle();
-			args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
+			args.putString(DummySectionFragment.ARG_FRAGMENT_NAME, "fragment" + (position + 1));
 			fragment.setArguments(args);
 			return fragment;
 		}
@@ -350,7 +349,7 @@ public class DemoActivity extends FragmentActivity implements OnPageChangeListen
 		/**
 		 * The fragment argument representing the section number for this fragment.
 		 */
-		public static final String ARG_SECTION_NUMBER = "section_number";
+		public static final String ARG_FRAGMENT_NAME = "section_number";
 
 		@Retain
 		public boolean _boolean;
@@ -436,9 +435,9 @@ public class DemoActivity extends FragmentActivity implements OnPageChangeListen
 		@RetainArrayList(genericType = String.class)
 		public ArrayList<String> _stringArrayList;
 
-	/*	@RetainArrayList(genericType = CharSequence.class)
-		public ArrayList<CharSequence> _charSequenceArrayList;
-*/
+		/*
+		 * @RetainArrayList(genericType = CharSequence.class) public ArrayList<CharSequence> _charSequenceArrayList;
+		 */
 		@RetainArrayList(genericType = Parcelable.class)
 		public ArrayList<Parcelable> _parcelableArrayList;
 
@@ -447,7 +446,7 @@ public class DemoActivity extends FragmentActivity implements OnPageChangeListen
 		@Retain(permanent = true, instanceNSField = "instanceTag")
 		private String text = "initial text";
 
-		@SuppressWarnings("unused")
+		@Parameter(key = ARG_FRAGMENT_NAME)
 		private String instanceTag;
 
 
@@ -459,8 +458,6 @@ public class DemoActivity extends FragmentActivity implements OnPageChangeListen
 		@Override
 		public void onCreate(Bundle savedInstanceState)
 		{
-			// set instance tag first
-			instanceTag = "fragment" + getArguments().getInt(ARG_SECTION_NUMBER);
 			super.onCreate(savedInstanceState);
 			if (savedInstanceState == null)
 			{
@@ -497,10 +494,8 @@ public class DemoActivity extends FragmentActivity implements OnPageChangeListen
 				_stringArrayList.add("32");
 
 				/*
-				_charSequenceArrayList = new ArrayList<CharSequence>();
-				_charSequenceArrayList.add("33");
-				_charSequenceArrayList.add("34");
-				*/
+				 * _charSequenceArrayList = new ArrayList<CharSequence>(); _charSequenceArrayList.add("33"); _charSequenceArrayList.add("34");
+				 */
 			}
 			else
 			{
@@ -538,11 +533,10 @@ public class DemoActivity extends FragmentActivity implements OnPageChangeListen
 				stringArrayList.add("32");
 				assertEquals(stringArrayList, _stringArrayList);
 
-			/*	ArrayList<CharSequence> charSequenceArrayList = new ArrayList<CharSequence>();
-				charSequenceArrayList.add("33");
-				charSequenceArrayList.add("34");
-				assertEquals(charSequenceArrayList, _charSequenceArrayList);
-				*/
+				/*
+				 * ArrayList<CharSequence> charSequenceArrayList = new ArrayList<CharSequence>(); charSequenceArrayList.add("33");
+				 * charSequenceArrayList.add("34"); assertEquals(charSequenceArrayList, _charSequenceArrayList);
+				 */
 			}
 
 		}
@@ -552,6 +546,8 @@ public class DemoActivity extends FragmentActivity implements OnPageChangeListen
 		public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 		{
 			View rootView = inflater.inflate(R.layout.fragment_demo_dummy, container, false);
+			TextView textView = (TextView) rootView.findViewById(R.id.textView);
+			textView.setText(instanceTag);
 			editText = (EditText) rootView.findViewById(R.id.editText1);
 			editText.setText(text);
 			editText.addTextChangedListener(this);

@@ -17,6 +17,7 @@
 
 package org.dmfs.android.retentionmagic;
 
+import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
@@ -32,6 +33,14 @@ import android.support.v4.app.FragmentActivity;
 public class SupportFragment extends android.support.v4.app.Fragment
 {
 	private SharedPreferences mPrefs;
+
+
+	@Override
+	public void onAttach(Activity activity)
+	{
+		super.onAttach(activity);
+		RetentionMagic.init(this, getArguments());
+	}
 
 
 	@Override

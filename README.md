@@ -2,7 +2,7 @@
 
 __Helper to retain instance states in Android Activities and Fragments__
 
-This is a small library to make it easier to retain the instance state of an Android Fragment or Activity. In addition it can persist fields to ```SharedPreferences```.
+This is a small library to make it easier to retain the instance state of an Android Fragment or Activity. In addition it can persist fields to ```SharedPreferences``` and initialize fields from the given extras or arguments.
 
 ## Requirements
 
@@ -10,7 +10,7 @@ It has been tested on Android SDK Level 7 and above, but it might work on lower 
 
 ## Example code
 
-When writing an Activity or Fragment you often have to write code like this to save the state of the instance:
+When writing an Activity or Fragment you often have to write code like this to initialize, save and restore the state of the instance:
 
 		import android.app.Activity;
 		import android.content.SharedPreferences;
@@ -18,6 +18,9 @@ When writing an Activity or Fragment you often have to write code like this to s
 
 		public class DemoActivity extends Activity
 		{
+			/** key for the value in the extras Bundle */
+			public static final String EXTRA_VALUE = "com.example.EXTRA_VALUE";
+
 			private static final String KEY_INT1 = "int1";
 			private static final String KEY_STRING1 = "string1";
 			private static final String KEY_BUNDLE1 = "bundle1";
@@ -27,12 +30,16 @@ When writing an Activity or Fragment you often have to write code like this to s
 			private int mInt1;
 			private String mString1 = "initial value";
 			private Bundle mBundle1;
+			private String mValue;
 
 
 			@Override
 			protected void onCreate(Bundle savedInstanceState)
 			{
 				super.onCreate(savedInstanceState);
+
+				mValue = getIntent().getStringExtra(EXTRA_VALUE);
+
 				if (savedInstanceState != null)
 				{
 					mInt1 = savedInstanceState.getInt(KEY_INT1);
@@ -101,6 +108,9 @@ Using this library the same is achieved by
 
 		public class DemoActivity extends org.dmfs.android.retentionmagic.Activity
 		{
+			/** key for the value in the extras Bundle */
+			public static final String EXTRA_VALUE = "com.example.EXTRA_VALUE";
+
 			@Retain
 			private int mInt1;
 
@@ -110,6 +120,8 @@ Using this library the same is achieved by
 			@Retain
 			private Bundle mBundle1;
 
+			@Parameter(key = EXTRA_VALUE) // initialize mValue with the value EXTRA_VALUE in the extras Bundle
+			private String mValue;
 
 			...
 		}
@@ -124,6 +136,9 @@ If for some reason you can't inherit from the Activity and Fragment classes in `
 
 		public class DemoActivity extends Activity
 		{
+			/** key for the value in the extras Bundle */
+			public static final String EXTRA_VALUE = "com.example.EXTRA_VALUE";
+
 			@Retain
 			private int mInt1;
 
@@ -133,6 +148,9 @@ If for some reason you can't inherit from the Activity and Fragment classes in `
 			@Retain
 			private Bundle mBundle1;
 
+			@Parameter(key = EXTRA_VALUE)
+			private String mValue;
+
 			private SharedPreferences mPrefs;
 
 			@Override
@@ -140,6 +158,8 @@ If for some reason you can't inherit from the Activity and Fragment classes in `
 			{
 				super.onCreate(savedInstanceState);
 				mPrefs = getSharedPreferences(getPackageName() + ".sharedPrefences", 0);
+
+				RetentionMagic.init(this, getIntent().getExtras());
 
 				if (savedInstanceState == null)
 				{
