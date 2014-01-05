@@ -1241,11 +1241,8 @@ public final class RetentionMagic
 						continue;
 					}
 					String key = retain.key();
-
-					if (key == null || key.length() == 0)
-					{
-						key = getTag(classInstance, retain.instanceNSField(), retain.classNS(), instance).append(field.getName()).toString();
-					}
+					key = getTag(classInstance, retain.instanceNSField(), retain.classNS(), instance).append(
+						key == null || key.length() == 0 ? field.getName() : key).toString();
 
 					helper.restoreFromPreferences(field, instance, key, prefs);
 				}
@@ -1305,12 +1302,10 @@ public final class RetentionMagic
 					{
 						continue;
 					}
-					String key = retain.key();
 
-					if (key == null || key.length() == 0)
-					{
-						key = getTag(classInstance, retain.instanceNSField(), retain.classNS(), instance).append(field.getName()).toString();
-					}
+					String key = retain.key();
+					key = getTag(classInstance, retain.instanceNSField(), retain.classNS(), instance).append(
+						key == null || key.length() == 0 ? field.getName() : key).toString();
 
 					helper.storeInPreferences(field, instance, key, editor);
 				}
