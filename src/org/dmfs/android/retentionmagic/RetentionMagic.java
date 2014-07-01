@@ -29,9 +29,11 @@ import org.dmfs.android.retentionmagic.annotations.ParameterArrayList;
 import org.dmfs.android.retentionmagic.annotations.Retain;
 import org.dmfs.android.retentionmagic.annotations.RetainArrayList;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
@@ -382,7 +384,6 @@ public final class RetentionMagic
 			}
 		});
 
-		// TODO: support storing long arrays as Base64 encoded arrays in SharedPreferences
 		FINAL_CLASS_HELPERS.put(long[].class, new PersistenceHelper()
 		{
 
@@ -397,6 +398,62 @@ public final class RetentionMagic
 			public void storeInBundle(Field field, Object instance, String key, Bundle bundle) throws IllegalAccessException
 			{
 				bundle.putLongArray(key, (long[]) field.get(instance));
+			}
+
+
+			@Override
+			public void storeInPreferences(Field field, Object instance, String key, Editor editor) throws IllegalAccessException
+			{
+				StringBuilder arrayStringBuilder = new StringBuilder(1024);
+				long[] longArray = (long[]) field.get(instance);
+
+				if (longArray != null)
+				{
+					boolean first = true;
+					for (int i = 0; i < longArray.length; i++)
+					{
+						if (first)
+						{
+							first = !first;
+						}
+						else
+						{
+							arrayStringBuilder.append(",");
+						}
+						arrayStringBuilder.append(longArray[i]);
+					}
+					editor.putString(key, arrayStringBuilder.toString());
+				}
+				else
+				{
+					editor.putString(key, null);
+				}
+			}
+
+
+			@Override
+			public void restoreFromPreferences(Field field, Object instance, String key, SharedPreferences prefs) throws IllegalAccessException
+			{
+				String longArrayPref = prefs.getString(key, (String) field.get(instance));
+				long[] longArray = null;
+
+				if (longArrayPref != null)
+				{
+					if (longArrayPref.length() > 0)
+					{
+						String[] arrayString = longArrayPref.split(",");
+						longArray = new long[arrayString.length];
+						for (int i = 0; i < longArray.length; i++)
+						{
+							longArray[i] = Long.valueOf(arrayString[i]);
+						}
+					}
+					else
+					{
+						longArray = new long[0];
+					}
+				}
+				field.set(instance, longArray);
 			}
 		});
 
@@ -612,6 +669,7 @@ public final class RetentionMagic
 			ARRAYLIST_OTHER_CLASS_HELPERS.put(CharSequence.class, new PersistenceHelper()
 			{
 
+				@TargetApi(Build.VERSION_CODES.FROYO)
 				@Override
 				public void restoreFromBundle(Field field, Object instance, String key, Bundle bundle) throws IllegalAccessException
 				{
@@ -619,6 +677,7 @@ public final class RetentionMagic
 				}
 
 
+				@TargetApi(Build.VERSION_CODES.FROYO)
 				@SuppressWarnings("unchecked")
 				@Override
 				public void storeInBundle(Field field, Object instance, String key, Bundle bundle) throws IllegalAccessException
@@ -669,6 +728,7 @@ public final class RetentionMagic
 			OTHER_CLASS_HELPERS.put(CharSequence[].class, new PersistenceHelper()
 			{
 
+				@TargetApi(Build.VERSION_CODES.FROYO)
 				@Override
 				public void restoreFromBundle(Field field, Object instance, String key, Bundle bundle) throws IllegalAccessException
 				{
@@ -676,6 +736,7 @@ public final class RetentionMagic
 				}
 
 
+				@TargetApi(Build.VERSION_CODES.FROYO)
 				@Override
 				public void storeInBundle(Field field, Object instance, String key, Bundle bundle) throws IllegalAccessException
 				{
@@ -742,6 +803,7 @@ public final class RetentionMagic
 			OTHER_CLASS_HELPERS.put(IBinder.class, new PersistenceHelper()
 			{
 
+				@TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
 				@Override
 				public void restoreFromBundle(Field field, Object instance, String key, Bundle bundle) throws IllegalAccessException
 				{
@@ -749,6 +811,7 @@ public final class RetentionMagic
 				}
 
 
+				@TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
 				@Override
 				public void storeInBundle(Field field, Object instance, String key, Bundle bundle) throws IllegalAccessException
 				{
@@ -1096,6 +1159,7 @@ public final class RetentionMagic
 	}
 
 
+	@TargetApi(Build.VERSION_CODES.GINGERBREAD)
 	public static void persist(final Activity activity, final SharedPreferences prefs)
 	{
 		SharedPreferences.Editor editor = prefs.edit();
@@ -1114,6 +1178,7 @@ public final class RetentionMagic
 	}
 
 
+	@TargetApi(Build.VERSION_CODES.GINGERBREAD)
 	public static void persist(final Fragment fragment, final SharedPreferences prefs)
 	{
 		SharedPreferences.Editor editor = prefs.edit();
@@ -1132,6 +1197,7 @@ public final class RetentionMagic
 	}
 
 
+	@TargetApi(Build.VERSION_CODES.GINGERBREAD)
 	public static void persist(final android.support.v4.app.Fragment fragment, final SharedPreferences prefs)
 	{
 		SharedPreferences.Editor editor = prefs.edit();
